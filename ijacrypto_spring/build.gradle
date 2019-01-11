@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+	baseName = 'ijacrypto'
+	version =  '1.0'
+}
+
+group = 'com.ija'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile group: 'org.bouncycastle', name: 'bcprov-ext-jdk15on', version: '1.60'
+    compile 'mysql:mysql-connector-java' // MySQL Connector
+	compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '7.1.3.jre8-preview' // MSSQL
+    compile group: 'com.auth0', name: 'java-jwt', version: '3.4.1'
+	compile group: 'de.mkammerer', name: 'argon2-jvm', version: '2.5'
+
+}
